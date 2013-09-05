@@ -1,24 +1,50 @@
 package lab2;
 
 public class GameWorld {
-    private int level;
-    
-    private void loadWorld(){
-        
+    private String MapArea;
+
+    public GameWorld(String MapArea){
+        /*input validation for MapArea
+         * Possibly would be more ideal for the input 
+         * to  be a Map class or something
+         */
+        this.loadWorld(MapArea);
     }
     
-    public void setLevel(int level){
-        this.level = level;
+    public void loadWorld(String MapArea) {
+        /*input validation for MapArea
+         * Possibly would be more ideal for the input 
+         * to  be a Map class or something
+         */
+        this.loadAssets(MapArea);
+        this.loadEnemies(MapArea);
+        this.loadTextures(MapArea);
+
+    }
+
+    //Must be done BEFORE TEXTURES are loaded
+    //Needs a Map Area parameter to know what assets to load
+    private void loadAssets(String MapArea) {
+        /*All necessary non-static objects loaded into game world
+         * Example: Power-ups, movable objects (I.E. a crate), 
+         * Treasure chests
+         */
+    }
+
+    //Must be done BEFORE TEXTURES are loaded
+    //Needs a Map Area parameter to know what enemies to load
+    private void loadEnemies(String MapArea) {
+        //Load enemies into world
     }
     
-    public int getLevel(){
-        return level;
+    //Must be done AFTER ASSETS and ENEMIES are loaded
+    //Needs a Map Area parameter to know what textures to load
+    private void loadTextures(String MapArea) {
+        //All necessary textures loaded into memory
     }
-    
-    public void updateView(){
+
+    public void updateView() {
         //This method updates the screen view
         //For example: if you walk forward or turn around
     }
-    
-    
 }

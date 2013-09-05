@@ -5,8 +5,10 @@ public class GameCharacter {
     private String race;
     private int health;
     
-    public GameCharacter(){
-        
+    public GameCharacter(String name, String race){
+        this.characterName = name;
+        this.race = race;
+        health = 100;
     }
     
     /*This method would be nice to make a generic "useWeapon"
@@ -15,19 +17,23 @@ public class GameCharacter {
      * sheathed, nor are bows
     */
     public void useSword(){
+        
         this.unsheathSword();
         this.swingSword();
         this.sheathSword();
     }
     
+    //Must be done first
     private void unsheathSword(){
         //Unsheath sword
     }
     
+    //Must be done second
     private void swingSword(){
         //Swing sword
     }
     
+    //Must be done third
     private void sheathSword(){
         //Sheath sword
     }
@@ -37,6 +43,8 @@ public class GameCharacter {
         //Plays specificed animation
     }
     
+    
+    //Standard getters and setters
     public void setName(String name){
         //Validate proper name
         characterName = name;
