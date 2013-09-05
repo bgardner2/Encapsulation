@@ -2,9 +2,9 @@ package lab2;
 
 public class GUI {
     private Game game;
-    String worldName;
-    String characterName;
-    String characterRace;
+    private String worldName;
+    private String characterName;
+    private String characterRace;
     
     public GUI(){
         /*Standard gui creation for JFrame, panels, 
