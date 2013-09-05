@@ -23,15 +23,22 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
     private final int MAX_RECS = 10;
     private final int NOT_FOUND = -1;
 
-    String partNo;
-    int foundIndex = NOT_FOUND;
+    private String partNo;
+    private int foundIndex = NOT_FOUND;
     private String partDesc;
-    double partPrice;
+    private double partPrice;
+    
+    PartsManager partManager = new PartsManager();
 
-    String[] partNums = new String[10];
-    String[] partDescs = new String[10];
-    double[] partPrices = new double[10];
-    int emptyRow;
+    /*
+     * Move Arrays to PartsManager
+     */
+//    private String[] partNums = new String[10];
+//    private String[] partDescs = new String[10];
+//    private double[] partPrices = new double[10];
+//    private int emptyRow = partManager.getEmptyRow();;
+    //Remove this assignment --^
+
 
     /** Creates new form MainGUI */
     public MainGUI() {
@@ -270,7 +277,7 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
             return;
         }
 
-        if (emptyRow > 10) {
+        if (partManager.getEmptyRow() > /*10*/2) {
             JOptionPane.showMessageDialog(this, 
                     "Sorry, you have reach the maximum of 10 items.\n"
                     + "No more items can be saved.", "Maximum Reached", JOptionPane.WARNING_MESSAGE);
@@ -284,10 +291,13 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
             this.txtNewProdNo.requestFocus();
 
         } else {
-            partNums[emptyRow] = partNo;
-            partDescs[emptyRow] = partDesc;
-            partPrices[emptyRow] = partPrice;
-            this.emptyRow += 1;
+            
+            partManager.addPart(partNo, partDesc, partPrice);
+            //Old Code
+//            partNums[emptyRow] = partNo;
+//            partDescs[emptyRow] = partDesc;
+//            partPrices[emptyRow] = partPrice;
+//            this.emptyRow += 1;
         }
 
         clearEntryFields();
@@ -348,9 +358,15 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
         NumberFormat nf = NumberFormat.getCurrencyInstance();
         listProducts.setText(""); // clear list
         listProducts.append("Part\tDesc\t\tPrice\n====\t====\t\t=====\n");
-        for (int i = 0 ; i < emptyRow; i++) {
-            String rLine = partNums[i] + "\t"
-                    + partDescs[i] + "\t\t" + nf.format(partPrices[i]) + "\n";
+        for (int i = 0 ; i < /*emptyRow*/partManager.getEmptyRow(); i++) {
+            
+            /*String rLine = partNums[i] + "\t"
+                    + partDescs[i] + "\t\t" + nf.format(partPrices[i]) + "\n";*/
+            
+            String rLine = partManager.getPartNumAtIndex(i) + "\t" 
+                    + partManager.getDescAtIndex(i) + "\t\t" 
+                    + nf.format(partManager.getPriceAtIndex(i)) + "\n";
+            
             listProducts.append(rLine);
         }
     }
