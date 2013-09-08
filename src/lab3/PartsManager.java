@@ -1,8 +1,8 @@
 package lab3;
 
 public class PartsManager {
-    private final int MAX_RECS = 10;
 
+    private final int MAX_RECS = 10;
     private String[] partNums = new String[MAX_RECS];
     private String[] partDescs = new String[MAX_RECS];
     private double[] partPrices = new double[MAX_RECS];
@@ -19,17 +19,16 @@ public class PartsManager {
         setPartDesc(partDesc, index);
         setPartPrice(partPrice, index);
     }
-    
-    
-    public int getPartNumLength(){
+
+    public int getPartNumLength() {
         return partNums.length;
     }
-    
-    public int getPartDescLength(){
+
+    public int getPartDescLength() {
         return partDescs.length;
     }
-    
-    public int getPartPricesLength(){
+
+    public int getPartPricesLength() {
         return partPrices.length;
     }
 
@@ -44,26 +43,29 @@ public class PartsManager {
     public double getPriceAtIndex(int index) {
         return partPrices[index];
     }
-    
-    public void SortAll(){
+
+    public void SortAll() {
         // Only perform the sort if we have records
         if (emptyRow > 0) {
             // Bubble sort routine adapted from sample in text book...
             // Make sure the operations are peformed on all 3 arrays!
             for (int passNum = 1; passNum < emptyRow + 1; passNum++) {
-                for (int i = 1; i <= emptyRow - passNum; i++) {
-                    String temp = "";
-                    temp += partPrices[i - 1];
-                    partPrices[i - 1] = partPrices[i];
-                    partPrices[i] = Double.parseDouble(temp);
+                //for (int i = 1; i <= emptyRow - passNum; i ++){
+                for (int i = 1; i <= emptyRow - 1; i++) {
+                    if (partPrices[i-1] > partPrices[i]) {
+                        String temp = "";
+                        temp += partPrices[i - 1];
+                        partPrices[i - 1] = partPrices[i];
+                        partPrices[i] = Double.parseDouble(temp);
 
-                    temp = partNums[i - 1];
-                    partNums[i - 1] = partNums[i];
-                    partNums[i] = temp;
+                        temp = partNums[i - 1];
+                        partNums[i - 1] = partNums[i];
+                        partNums[i] = temp;
 
-                    temp = partDescs[i - 1];
-                    partDescs[i - 1] = partDescs[i];
-                    partDescs[i] = temp;
+                        temp = partDescs[i - 1];
+                        partDescs[i - 1] = partDescs[i];
+                        partDescs[i] = temp;
+                    }
                 }
             }
         }

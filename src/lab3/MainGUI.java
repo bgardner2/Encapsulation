@@ -20,9 +20,11 @@ import javax.swing.*;
  * @version 1.00
  */
 public class MainGUI extends javax.swing.JFrame implements ActionListener {
-
+    //Acceptable to put all constants in an interface??
+    
     private final int MAX_RECS = 10;
     private final int NOT_FOUND = -1;
+    
     //JOptionPane Message constants
     private final String ERR_FLOATING_POINT = "Sorry, the price entry must be a whole or floating point number only.\n";
     private final String ERR_MAXIMUM_ITEMS = "Sorry, you have reach the maximum of 10 items.\n"
