@@ -49,7 +49,7 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
     private String partDesc;
     private double partPrice;
     
-    PartsManager partManager = new PartsManager();
+    private PartsManager partManager = new PartsManager();
 
     /*
      * Move Arrays to PartsManager
@@ -298,7 +298,7 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
             return;
         }
 
-        if (partManager.getEmptyRow() > /*10*/2) {
+        if (partManager.getEmptyRow() >= MAX_RECS) {
             JOptionPane.showMessageDialog(this, 
                     ERR_MAXIMUM_ITEMS, MAX_ITEMS_REACHED_TITLE, JOptionPane.WARNING_MESSAGE);
 
