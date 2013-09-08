@@ -11,6 +11,13 @@ import java.util.Date;
  * @version     1.01
  */
 public class Employee {
+    /*
+     * TO DO: Change Access Modifiers
+     */
+    
+    /*
+     * TO DO: Change "Magic Numbers" in the Exceptions
+     */
     String firstName;
     String lastName;
     public String ssn;
@@ -31,6 +38,11 @@ public class Employee {
         this.reviewDeptPolicies();
         
     }
+    
+    /*
+     * TO DO: Call goToCube()
+     */
+    
 
     // Assume this must be performed first
     private void meetWithHrForBenefitAndSalryInfo() {
@@ -60,6 +72,10 @@ public class Employee {
 
     // Assume this must be performed 4th
     private void moveIntoCubicle(String cubeId) {
+        /*
+         * Validate cubeId
+         */ 
+        
         if(metWithHr && metDeptStaff && reviewedDeptPolicies) {
             this.cubeId = cubeId;
             this.movedIn = true;

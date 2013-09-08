@@ -10,6 +10,9 @@ package lab1;
  */
 public class Startup {
     public static void main(String[] args) {
+        /*
+         * TO DO: Change Access Modifiers
+         */
         Employee employee = new Employee();
         employee.firstName = "Peter";
         employee.lastName = "Piper";

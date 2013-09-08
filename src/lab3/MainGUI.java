@@ -22,7 +22,28 @@ import javax.swing.*;
 public class MainGUI extends javax.swing.JFrame implements ActionListener {
     private final int MAX_RECS = 10;
     private final int NOT_FOUND = -1;
-
+    
+    //JOptionPane Message constants
+    private final String ERR_FLOATING_POINT= "Sorry, the price entry must be a whole or floating point number only.\n";
+    private final String ERR_MAXIMUM_ITEMS = "Sorry, you have reach the maximum of 10 items.\n"
+                    + "No more items can be saved.";
+    private final String ERR_INCOMPLETE_FIELDS = "Sorry, you must complete all fields. Please try again.";
+    private final String ERR_NO_SORT_ITEMS = "Sorry, there are no items to sort";
+    private final String PART_UPDATED = "Part updated successfully!";
+    private final String PART_NUM_NOT_FOUND = "Part Number not found. Please try again.";
+    private final String PARTNUM_ENTRY_MISSING = "Please enter a Part No. to search";
+    
+    //JOptionPane Title constants
+    private final String SEARCH_FAIL_TITLE = "Search Failure";
+    private final String NUM_FORMAT_ERROR_TITLE = "Number Format Error";
+    private final String MAX_ITEMS_REACHED_TITLE = "Maximum Reached";
+    private final String SORT_ERROR_TITLE = "Sort Error";
+    private final String ENTRY_MISSING_TITLE = "Entry Missing";
+    private final String INCOMPLETE_FIELD_TITLE = "Incomplete Part Entry";
+    private final String SUCCESS_TITLE = "Success Confirmation";
+    
+    
+    
     private String partNo;
     private int foundIndex = NOT_FOUND;
     private String partDesc;
@@ -272,22 +293,21 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
             partPrice = Double.parseDouble(this.txtNewProdPrice.getText());
         } catch(Exception e) {
             JOptionPane.showMessageDialog(this,
-                    "Sorry, the price entry must be a whole or floating point number only.\n",
-                    "Number Format Error", JOptionPane.WARNING_MESSAGE);
+                    ERR_FLOATING_POINT,
+                    NUM_FORMAT_ERROR_TITLE, JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         if (partManager.getEmptyRow() > /*10*/2) {
             JOptionPane.showMessageDialog(this, 
-                    "Sorry, you have reach the maximum of 10 items.\n"
-                    + "No more items can be saved.", "Maximum Reached", JOptionPane.WARNING_MESSAGE);
+                    ERR_MAXIMUM_ITEMS, MAX_ITEMS_REACHED_TITLE, JOptionPane.WARNING_MESSAGE);
 
         } else if (partNo.length() == 0 || partDesc.length() == 0 
                 || this.txtNewProdPrice.getText().length() == 0)
         {
             JOptionPane.showMessageDialog(this, 
-                    "Sorry, you must complete all fields. Please try again.",
-                    "Incomplete Part Entry", JOptionPane.WARNING_MESSAGE);
+                    ERR_INCOMPLETE_FIELDS,
+                    INCOMPLETE_FIELD_TITLE, JOptionPane.WARNING_MESSAGE);
             this.txtNewProdNo.requestFocus();
 
         } else {
@@ -315,7 +335,7 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
             }
            if (foundIndex == NOT_FOUND) {
                 JOptionPane.showMessageDialog(this,
-                    "Part Number not found. Please try again.",
+                    PART_NUM_NOT_FOUND,
                     "Not Found", JOptionPane.WARNING_MESSAGE);
            } else {
                 txtCurProdNo.setText(partNums[foundIndex]);
@@ -324,8 +344,8 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
            }
         } else {
                 JOptionPane.showMessageDialog(this,
-                    "Please enter a Part No. to search",
-                    "Entry Missing", JOptionPane.WARNING_MESSAGE);
+                    PARTNUM_ENTRY_MISSING,
+                    ENTRY_MISSING_TITLE, JOptionPane.WARNING_MESSAGE);
         }
 
     }//GEN-LAST:event_btnSearchActionPerformed
@@ -337,17 +357,18 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         if (foundIndex == NOT_FOUND) {
                 JOptionPane.showMessageDialog(this,
-                    "Part Number not found. Please try again.",
-                    "Search Failure", JOptionPane.WARNING_MESSAGE);
+                    PART_NUM_NOT_FOUND,
+                    SEARCH_FAIL_TITLE, JOptionPane.WARNING_MESSAGE);
         } else {
             partNums[foundIndex] = txtCurProdNo.getText();
             partDescs[foundIndex] = txtCurDesc.getText();
             partPrices[foundIndex] = Double.parseDouble(txtCurPrice.getText());
             displayList();
             JOptionPane.showMessageDialog(this,
-                "Part updated successfully!",
-                "Success Confirmation", JOptionPane.INFORMATION_MESSAGE);
+                PART_UPDATED,
+                SUCCESS_TITLE, JOptionPane.INFORMATION_MESSAGE);
         }
+        
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnSortListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortListActionPerformed
@@ -397,7 +418,7 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
             displayList();
         } else {
             JOptionPane.showMessageDialog(this,
-                    "Sorry, there are not items to sort", "Sort Error",
+                    ERR_NO_SORT_ITEMS, SORT_ERROR_TITLE,
                     JOptionPane.WARNING_MESSAGE);
         }
     }
@@ -408,7 +429,7 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
         txtNewProdPrice.setText("");
     }
 
-
+// <editor-fold defaultstate="collapsed" desc="Swing Variable Declartions">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDisplayList;
     private javax.swing.JButton btnEnterRecord;
@@ -433,5 +454,5 @@ public class MainGUI extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JTextField txtNewProdPrice;
     private javax.swing.JTextField txtSearchPartNo;
     // End of variables declaration//GEN-END:variables
-
+// </editor-fold>
 }
